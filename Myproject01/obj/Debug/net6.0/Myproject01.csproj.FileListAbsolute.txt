@@ -39,3 +39,4 @@ D:\Myproject\Myproject01\Myproject01\obj\Debug\net6.0\refint\Myproject01.dll
 D:\Myproject\Myproject01\Myproject01\obj\Debug\net6.0\Myproject01.pdb
 D:\Myproject\Myproject01\Myproject01\obj\Debug\net6.0\Myproject01.genruntimeconfig.cache
 D:\Myproject\Myproject01\Myproject01\obj\Debug\net6.0\ref\Myproject01.dll
+D:\Myproject\Myproject01\Myproject01\bin\Debug\net6.0\AutoMapper.dll

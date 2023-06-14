@@ -17,6 +17,10 @@ namespace Myproject01
 
             IoC.Register(builder.Services, builder.Configuration);
 
+            #region [Auto mapper]
+            AutoMapperInitiator.Register(builder.Services);
+            #endregion
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
