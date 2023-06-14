@@ -17,6 +17,7 @@ namespace Myproject01.Infrastructure.Dependencies
             services.AddSingleton<HttpClient, HttpClient>();
 
             services.AddScoped<IProductSevice,ProductSevice>();
+            services.AddScoped<IBrandService,BrandService>();
         }
     }
 }
