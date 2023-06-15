@@ -28,26 +28,40 @@ namespace Myproject01.Services.Implements
             brand.Updatedby = string.Empty;
             _context.Brands.Add(brand);
             _context.SaveChanges();
-            return new GenericResponse(true, 200, " tạo mới sản phẩm thành công");
-
+            return new GenericResponse(true, 200, " tạo mới sản phẩm thành công", brand);
         }
 
         public GenericResponse Delete(int id)
         {
-            throw new NotImplementedException();
+            var found = CheckDeleteSeriesNum(id);
+            if (!found) return new GenericResponse(false, 401, "ID không tồn tại");
+            var idDelete = _context.Brands.FirstOrDefault(b => b.Id == id);
+            _context.Brands.Remove(idDelete);
+            _context.SaveChanges();
+            return new GenericResponse(true, 200, "xóa thành công");
         }
 
         public GenericResponse GetById(int id)
         {
-            throw new NotImplementedException();
+            var found = CheckExistBrandId(id);
+            if (!found) return new GenericResponse(false, 401, " Id bạn nhập không tồn tại sản phẩm");
+            var reponse = new BrandRequest();
+
+            var idResponse = _context.Brands.FirstOrDefault(x => x.Id == id);
+            var product = _mapper.Map<Brand>(idResponse);
+            return new GenericResponse(true, 200, " Sản phẩm của bạn yêu cầu thành công", product);
         }
 
-        public GenericResponse Update(Brand request)
+        public GenericResponse Update(BrandRequest request)
         {
-            throw new NotImplementedException();
+            var idUpdate = _context.Brands.Where(x => x.Id == request.Id).FirstOrDefault();
+            if (idUpdate == null) return new GenericResponse(false, 401, "ID bạn nhập không tồn tại");
+            request.Name = idUpdate.Name;
+            request.Id = idUpdate.Id;
+            _context.Brands.Update(idUpdate);
+            _context.SaveChanges();
+            return new GenericResponse(true, 200, "UPDATE thành công", idUpdate);
         }
-
-
 
         #region [private function helper]
 
@@ -55,7 +69,9 @@ namespace Myproject01.Services.Implements
 
         //private bool CheckExistSeriesNumOnUpdate(string seriesNum, int currentId) => _context.Brands.Any(x => x.SeriesNumber == seriesNum && x.Id != currentId);
 
-        //private bool CheckDeleteSeriesNum(int seriesId) => _context.Brands.Any(x => x.BrandId == seriesId);
+        private bool CheckDeleteSeriesNum(int brandId) => _context.Brands.Any(x => x.Id == brandId);
+
+        private bool CheckExistBrandId(int brandId) => _context.Brands.Any(x => x.Id == brandId);
 
         #endregion [private function helper]
     }

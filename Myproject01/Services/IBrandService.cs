@@ -9,11 +9,11 @@ namespace Myproject01.Services
     {
         GenericResponse Create(BrandRequest request);
 
-        GenericResponse Update(Brand request);
+        GenericResponse Update(BrandRequest request);
 
         GenericResponse Delete(int id);
 
         GenericResponse GetById(int id);
-
+        
     }
 }

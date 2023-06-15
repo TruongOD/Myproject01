@@ -39,7 +39,7 @@ namespace Myproject01.Services.Implements
         public GenericResponse Delete(int id)
         {
             var found = CheckDeleteSeriesNum(id);
-            if (found) return new GenericResponse(false, 401, " Id của bạn cần xóa không tồn tại");
+            if (!found) return new GenericResponse(false, 401, " Id của bạn cần xóa không tồn tại");
             var idDelete = _context.Products.FirstOrDefault(x => x.BrandId == id);
             _context.Products.Remove(idDelete);
             _context.SaveChanges();
@@ -92,7 +92,7 @@ namespace Myproject01.Services.Implements
 
         private bool CheckExistSeriesNumOnUpdate(string seriesNum, int currentId) => _context.Products.Any(x => x.SeriesNumber == seriesNum && x.Id != currentId);
 
-        private bool CheckDeleteSeriesNum(int seriesId) => _context.Products.Any(x => x.BrandId == seriesId);
+        private bool CheckDeleteSeriesNum(int deleteId) => _context.Products.Any(x => x.Id == deleteId);
 
         #endregion [private function helper]
     }
