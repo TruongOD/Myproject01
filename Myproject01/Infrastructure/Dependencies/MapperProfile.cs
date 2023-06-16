@@ -10,6 +10,7 @@ namespace Myproject01.Infrastructure.Dependencies
         {
             CreateMap<ProductRequest, Product>();
             CreateMap<BrandRequest, Brand>();
+            CreateMap<WareHouseResquest, WareHouse>();
         }
     }
 }

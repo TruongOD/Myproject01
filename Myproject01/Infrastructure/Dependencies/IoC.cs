@@ -18,6 +18,7 @@ namespace Myproject01.Infrastructure.Dependencies
 
             services.AddScoped<IProductSevice,ProductSevice>();
             services.AddScoped<IBrandService,BrandService>();
+            services.AddScoped<IWarehouseService,WarehouseService>();
         }
     }
 }

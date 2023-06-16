@@ -53,7 +53,7 @@ namespace Myproject01.Services.Implements
 
         public GenericResponse GetById(int id)
         {
-            var reponse = new Product();
+            
             var idResponse = _context.Products.FirstOrDefault(x => x.Id == id);
             //reponse.BrandId = idResponse.BrandId;
             //reponse.Id = idResponse.Id;

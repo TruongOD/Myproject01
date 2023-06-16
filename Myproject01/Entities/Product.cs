@@ -15,5 +15,7 @@ namespace Myproject01.Entities
 
         public int BrandId { get; set; }
         public string SeriesNumber { get; set; }
+
+        public double Price { get; set; }
     }
 }
