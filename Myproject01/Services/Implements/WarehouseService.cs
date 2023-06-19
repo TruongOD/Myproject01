@@ -12,21 +12,20 @@ namespace Myproject01.Services.Implements
 
         public WarehouseService(MyProjetContext context, IMapper mapper)
         {
-            _context = context; 
+            _context = context;
             _mapper = mapper;
         }
 
         public GenericResponse Create(WareHouseResquest request)
         {
-            
             var found = CheckIdWareHouse(request.Id);
             if (found) return new GenericResponse(false, 401, "ID kho hàng bạn tạo mới đã bị trùng - Mời kiểm tra lại");
 
             var wareHouse = _mapper.Map<WareHouse>(request);
-            wareHouse.CreateDate= DateTime.Now;
-            wareHouse.UpdateDate= DateTime.Now;
+            wareHouse.CreateDate = DateTime.Now;
+            wareHouse.UpdateDate = DateTime.Now;
             wareHouse.Createdby = string.Empty;
-            wareHouse.Updatedby= string.Empty;
+            wareHouse.Updatedby = string.Empty;
             _context.WareHouse.Add(wareHouse);
             _context.SaveChanges();
             return new GenericResponse(true, 200, " tạo mới kho hàng thành công", wareHouse);
@@ -46,21 +45,31 @@ namespace Myproject01.Services.Implements
         public GenericResponse GetById(int id)
         {
             var found = CheckIdWareHouse(id);
-            if (!found)return new GenericResponse(false, 401, " Kho bạn yêu cầu không tồn tại");
+            if (!found) return new GenericResponse(false, 401, " Kho bạn yêu cầu không tồn tại");
 
-            var idWarehouse = _context.WareHouse.FirstOrDefault(x=> x.Id == id);
-            
+            var idWarehouse = _context.WareHouse.FirstOrDefault(x => x.Id == id);
+
             var warehouse = _mapper.Map<WareHouse>(idWarehouse);
             return new GenericResponse(true, 200, " Kho của bạn yêu cầu thành công", warehouse);
-
         }
 
         public GenericResponse Update(WareHouse request)
         {
-            throw new NotImplementedException();
+            var found = CheckIdWareHouse(request.Id);
+            if (!found) return new GenericResponse(true, 401, "ID kho hàng bạn nhập sai hoặc kho hàng này không có");
+            var idUpdate = _context.WareHouse.Any(p => p.Id == request.Id);
+            var warehouseUpdate = _mapper.Map<WareHouse>(request);
+
+            _context.WareHouse.Update(warehouseUpdate);
+            _context.SaveChanges(idUpdate);
+
+            return new GenericResponse(true, 200, "update thành công", warehouseUpdate);
         }
+
         #region [funntion helper]
-        public bool CheckIdWareHouse(int idWarehouse) => _context.WareHouse.Any(x=> x.Id == idWarehouse);
-        #endregion
+
+        public bool CheckIdWareHouse(int idWarehouse) => _context.WareHouse.Any(x => x.Id == idWarehouse);
+
+        #endregion [funntion helper]
     }
 }

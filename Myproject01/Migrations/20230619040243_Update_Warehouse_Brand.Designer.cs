@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Myproject01;
 
@@ -10,9 +11,10 @@ using Myproject01;
 namespace Myproject01.Migrations
 {
     [DbContext(typeof(MyProjetContext))]
-    partial class MyProjetContextModelSnapshot : ModelSnapshot
+    [Migration("20230619040243_Update_Warehouse_Brand")]
+    partial class Update_Warehouse_Brand
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,10 +134,6 @@ namespace Myproject01.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 

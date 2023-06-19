@@ -1,11 +1,15 @@
-﻿namespace Myproject01.Responses
+﻿using Myproject01.Requests;
+
+namespace Myproject01.Responses
 {
     public class WarehouseResonses
     {
-        public string ProductName { get; set; }
-        public double ProductPrice { get; set; }
-        public string BrandId { get; set; }
-    }
+        public string Name { get; set; }
 
-    
+        public string Location { get; set; }
+
+        //public int TotalProduct { get; set; }
+        //public double TotalPrice { get; set; }
+        public List<BrandRequest> BrandRequests { get; set; } = new List<BrandRequest>();
+    }
 }
