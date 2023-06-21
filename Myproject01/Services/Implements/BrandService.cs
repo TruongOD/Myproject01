@@ -56,8 +56,12 @@ namespace Myproject01.Services.Implements
         {
             var idUpdate = _context.Brands.Where(x => x.Id == request.Id).FirstOrDefault();
             if (idUpdate == null) return new GenericResponse(false, 401, "ID bạn nhập không tồn tại");
-            request.Name = idUpdate.Name;
             request.Id = idUpdate.Id;
+            request.Name = idUpdate.Name;
+            request.ProductId =idUpdate.ProductId;
+            request.Provider = idUpdate.Provider;
+            request.Price = idUpdate.Price;
+
             _context.Brands.Update(idUpdate);
             _context.SaveChanges();
             return new GenericResponse(true, 200, "UPDATE thành công", idUpdate);

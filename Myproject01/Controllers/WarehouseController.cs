@@ -10,11 +10,10 @@ namespace Myproject01.Controllers
     public class WarehouseController : Controller
     {
         public readonly IWarehouseService _service;
-        public readonly IListWarehouseService _listService;
-        public WarehouseController(IWarehouseService service, IListWarehouseService listService)
+        public WarehouseController(IWarehouseService service)
         {
             _service = service;
-            _listService = listService;
+            
         }
         [HttpPost("Create")]
         public IActionResult Create(WareHouseResquest reuquest) => Ok(_service.Create(reuquest));
@@ -26,7 +25,6 @@ namespace Myproject01.Controllers
         public IActionResult Update(WareHouse request) =>Ok(_service.Update(request));
 
 
-        [HttpGet("GET")]
-        public IActionResult GetbyId(WareHouseResquest request) => Ok(_listService.GetListWareHouse(request));
+        
     }
 }

@@ -71,10 +71,9 @@ namespace Myproject01.Services.Implements
             var idUpdate = _context.Products.Where(x => x.Id == request.Id).FirstOrDefault();
             if (idUpdate == null) return new GenericResponse(false, 401, "ID bạn nhập không tồn tại, không thể update");
             idUpdate.Id = request.Id;
+            idUpdate.Name= request.Name;
             idUpdate.BrandId = request.BrandId;
             idUpdate.SeriesNumber = request.SeriesNumber;
-            idUpdate.Name = request.Name;
-            idUpdate.Provider = request.Provider;
             idUpdate.CreateDate = request.CreateDate;
             idUpdate.UpdateDate = request.UpdateDate;
             idUpdate.Createdby = request.Createdby;

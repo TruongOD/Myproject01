@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Myproject01.Entities
 {
@@ -10,12 +10,9 @@ namespace Myproject01.Entities
         [StringLength(100)]
         public string Name { get; set; }
 
-        [StringLength(100)]
-        public string Provider { get; set; }
-
         public int BrandId { get; set; }
-        public string SeriesNumber { get; set; }
 
-        public double Price { get; set; }
+        // Nhà sản suất
+        public string SeriesNumber { get; set; }
     }
 }

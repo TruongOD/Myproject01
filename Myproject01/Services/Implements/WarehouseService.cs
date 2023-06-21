@@ -26,6 +26,7 @@ namespace Myproject01.Services.Implements
             wareHouse.UpdateDate = DateTime.Now;
             wareHouse.Createdby = string.Empty;
             wareHouse.Updatedby = string.Empty;
+
             _context.WareHouse.Add(wareHouse);
             _context.SaveChanges();
             return new GenericResponse(true, 200, " tạo mới kho hàng thành công", wareHouse);

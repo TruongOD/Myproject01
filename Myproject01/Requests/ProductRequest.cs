@@ -2,8 +2,8 @@
 {
     public class ProductRequest
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Provider { get; set; }
         public int BrandId { get; set; }
         public string SeriesNumber { get; set; }
     }

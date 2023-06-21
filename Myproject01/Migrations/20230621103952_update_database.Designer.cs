@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Myproject01;
 
@@ -10,9 +11,10 @@ using Myproject01;
 namespace Myproject01.Migrations
 {
     [DbContext(typeof(MyProjetContext))]
-    partial class MyProjetContextModelSnapshot : ModelSnapshot
+    [Migration("20230621103952_update_database")]
+    partial class update_database
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +50,9 @@ namespace Myproject01.Migrations
                     b.Property<string>("Provider")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime(6)");
@@ -127,12 +132,6 @@ namespace Myproject01.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("double");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime(6)");

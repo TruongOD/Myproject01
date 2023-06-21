@@ -7,7 +7,9 @@ namespace Myproject01.Entities
     {
         public string Name { get; set; }
         public int ProductId { get; set; }
+
+        public string Provider { get; set; }
+
         public double Price { get; set; }
-        public int Quantity { get; set; }
     }
 }
